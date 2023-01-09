@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(moveSpeed);
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
@@ -176,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
         //walking
-        else if(grounded && !Input.GetKey(sprintKey) && !Input.GetKey(crouchKey) && state!=MovementState.freeze)
+        else if(grounded && !Input.GetKey(sprintKey) && !Input.GetKey(crouchKey) /*&& state != MovementState.freeze*/)
         {
             moveSpeed = walkSpeed;
             state = MovementState.walking;

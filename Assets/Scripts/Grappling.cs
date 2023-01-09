@@ -85,6 +85,7 @@ public class Grappling : MonoBehaviour
     {
         pm.freeze = false;
         grappling= false;
+        pm.activeGrapple=false;
         grapplingCdTimer = grapplingCd;
 
         lineRenderer.enabled= false;
