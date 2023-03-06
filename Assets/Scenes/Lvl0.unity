@@ -10600,7 +10600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9429e708dd4e39e488a9a41244b0d6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
+  walkSpeed: 1.5
   sprintSpeed: 15
   groundDrag: 3
   jumpForce: 10
