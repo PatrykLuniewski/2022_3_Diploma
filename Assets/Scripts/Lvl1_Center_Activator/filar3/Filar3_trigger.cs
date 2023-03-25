@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Filar1_trigger : MonoBehaviour
+public class Filar3_trigger : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Animator filar1 = null;
+    public Animator filar3 = null;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -14,7 +14,8 @@ public class Filar1_trigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            filar1.Play("Filar1_animation_activate", 0, 0.0f);
+            filar3.Play("Filar3_animation_activate", 0, 0.0f);
+            Destroy(this.gameObject);
         }
     }
 }
