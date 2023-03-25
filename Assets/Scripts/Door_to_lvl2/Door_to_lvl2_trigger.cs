@@ -14,7 +14,7 @@ public class Door_to_lvl2_trigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            door_to_lvl2.Play("door_to_lvl2_activate", 0, 0.0f);
+            door_to_lvl2.Play("opening_fragments_animation", 0, 0.0f);
             Destroy(this.gameObject);
         }
     }
