@@ -1,29 +1,31 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Filar2_trigger : MonoBehaviour
+public class ElectricBoxOn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Animator filar2 = null;
+
+    public Animator electricBoxButton = null;
     public GameObject gameObject = null;
     public Material material = null;
     private Renderer renderer = null;
 
+
     public void OnTriggerStay(Collider other)
     {
-
         if (other.CompareTag("Player"))
         {
-            if(Input.GetKey(KeyCode.E))
+
+            if (Input.GetKey(KeyCode.E))
             {
                 renderer = gameObject.GetComponent<Renderer>();
                 renderer.material = material;
-                filar2.Play("Filar2_animation_activate", 0, 0.0f);
+                electricBoxButton.Play("electric_button_activate", 0, 0.0f);
                 //Destroy(this.gameObject);
-            }    
+            }
+
 
         }
     }
+
 }
