@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Lvl1New.unity
+    guid: a292e727192ec3842966ba01e5442189
+  - enabled: 1
+    path: Assets/Scenes/DarkRoom.unity
+    guid: ed658dcd0d352a6489028ece785ac671
   m_configObjects: {}
