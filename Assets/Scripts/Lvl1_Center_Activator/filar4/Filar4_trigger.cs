@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,15 +8,29 @@ public class Filar4_trigger : MonoBehaviour
 {
     // Start is called before the first frame update
     public Animator filar4 = null;
+    public GameObject gameObject = null;
+    public Material material = null;
+    private Renderer renderer = null;
 
-    public void OnTriggerEnter(Collider other)
+    public GameObject door_trigger;
+    public GameObject door_trigger2;
+
+    public void OnTriggerStay(Collider other)
     {
 
         if (other.CompareTag("Player"))
         {
 
-            filar4.Play("Filar4_animation_activate", 0, 0.0f);
-            Destroy(this.gameObject);
+            if(Input.GetKey(KeyCode.E))
+            {
+                renderer = gameObject.GetComponent<Renderer>();
+                renderer.material = material;
+                filar4.Play("Filar4_animation_activate", 0, 0.0f);
+                door_trigger.SetActive(true);
+                door_trigger2.SetActive(true);
+                //Destroy(this.gameObject);
+            }
+
 
         }
     }
