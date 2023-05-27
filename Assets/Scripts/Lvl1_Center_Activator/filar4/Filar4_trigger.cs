@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ public class Filar4_trigger : MonoBehaviour
     public Material material = null;
     private Renderer renderer = null;
 
+    public GameObject door_trigger;
+    public GameObject door_trigger2;
+
     public void OnTriggerStay(Collider other)
     {
 
@@ -22,6 +26,8 @@ public class Filar4_trigger : MonoBehaviour
                 renderer = gameObject.GetComponent<Renderer>();
                 renderer.material = material;
                 filar4.Play("Filar4_animation_activate", 0, 0.0f);
+                door_trigger.SetActive(true);
+                door_trigger2.SetActive(true);
                 //Destroy(this.gameObject);
             }
 

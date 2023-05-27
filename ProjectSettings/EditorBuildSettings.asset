@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DarkRoom.unity
     guid: ed658dcd0d352a6489028ece785ac671
+  - enabled: 1
+    path: Assets/Scenes/DeathLabirynt.unity
+    guid: 7a2b133c1063f5b4f9db2a0405428f8c
   m_configObjects: {}
