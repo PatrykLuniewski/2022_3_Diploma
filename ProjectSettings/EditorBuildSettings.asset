@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeathLabirynt.unity
     guid: 7a2b133c1063f5b4f9db2a0405428f8c
+  - enabled: 1
+    path: Assets/Scenes/LVL2.unity
+    guid: 114c61f211a75f34ab963f8272c9da84
+  - enabled: 1
+    path: Assets/Scripts/LVL_2 SCRIPTS/lvl2_sceneTriger/lvl2door.unity
+    guid: 428967d7e7a57354099f12b3e75da8f0
   m_configObjects: {}
