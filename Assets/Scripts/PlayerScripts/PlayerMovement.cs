@@ -9,13 +9,13 @@ public class PlayerMovement : MonoBehaviour
 
     public float walkSpeed;
     public float sprintSpeed; 
-    public float groundDrag; //efekt œlizgania siê po pod³odze im wiêcej tym mniej siê œlizgasz
+    public float groundDrag; //efekt ï¿½lizgania siï¿½ po podï¿½odze im wiï¿½cej tym mniej siï¿½ ï¿½lizgasz
 
 
     [Header("Jumping")]
-    public float jumpForce; //si³a skoku ? 
+    public float jumpForce; //siï¿½a skoku ? 
     public float jumpCooldown;
-    public float airMultiplier; //szybkoœæ poruszania siê w powietrzu
+    public float airMultiplier; //szybkoï¿½ï¿½ poruszania siï¿½ w powietrzu
     bool readyToJump;
 
     [Header("crouching")]
@@ -37,9 +37,9 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Ground Check")]
-    public float playerHeight;//potrzebne do okreœlenia czy dotykamy pod³ogi
+    public float playerHeight;//potrzebne do okreï¿½lenia czy dotykamy podï¿½ogi
     public LayerMask whatIsGround;
-    bool grounded;//czy dotykamy pod³ogi
+    bool grounded;//czy dotykamy podï¿½ogi
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -108,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
         }
 
+        Debug.Log(grounded);
+
         
 
 
@@ -123,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
     private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
+
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
@@ -215,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
         else if (grounded==false)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
-        //grawitacja wy³¹czona podczasz przebywania na nachylonej powierzchni
+        //grawitacja wyï¿½ï¿½czona podczasz przebywania na nachylonej powierzchni
         rb.useGravity = !OnSlope();
     }
 
