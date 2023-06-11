@@ -14,13 +14,15 @@ public class Filar4_trigger : MonoBehaviour
 
     public GameObject door_trigger;
     public GameObject door_trigger2;
+    public GameObject gameObject2 = null;
 
     public void OnTriggerStay(Collider other)
     {
 
         if (other.CompareTag("Player"))
         {
-
+            gameObject2.SetActive(true);
+            gameObject2.SetActive(true);
             if(Input.GetKey(KeyCode.E))
             {
                 renderer = gameObject.GetComponent<Renderer>();
@@ -32,6 +34,14 @@ public class Filar4_trigger : MonoBehaviour
             }
 
 
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameObject2.SetActive(false);
         }
     }
 }
