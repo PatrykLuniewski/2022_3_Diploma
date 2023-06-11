@@ -10,13 +10,15 @@ public class Filar3_trigger : MonoBehaviour
     public GameObject gameObject = null;
     public Material material = null;
     private Renderer renderer = null;
+    public GameObject gameObject2 = null;
 
     public void OnTriggerStay(Collider other)
     {
 
         if (other.CompareTag("Player"))
         {
-            if(Input.GetKey(KeyCode.E))
+            gameObject2.SetActive(true);
+            if (Input.GetKey(KeyCode.E))
             {
                 renderer = gameObject.GetComponent<Renderer>();
                 renderer.material = material;
@@ -24,6 +26,13 @@ public class Filar3_trigger : MonoBehaviour
                 //Destroy(this.gameObject);
             }
 
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameObject2.SetActive(false);
         }
     }
 }
