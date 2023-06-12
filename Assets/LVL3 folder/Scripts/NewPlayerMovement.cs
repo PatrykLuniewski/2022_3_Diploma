@@ -21,7 +21,7 @@ public class NewPlayerMovement : MonoBehaviour
     public float hookCooldown;
     bool readyToJump = true;
 
-    private Vector3 posss;
+    private Quaternion posss;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -63,7 +63,8 @@ public class NewPlayerMovement : MonoBehaviour
     }
 
     private void Update() {
-        posss = orientation.position;
+        
+        
 
 
         switch (state) {
@@ -82,7 +83,7 @@ public class NewPlayerMovement : MonoBehaviour
                 }
                 break;
             case State.HookshotFlyingPlayer:
-                playerCamera.transform.rotation = Quaternion.Euler(posss);
+                playerCamera.transform.rotation = posss;
                 HandleHookshotMovement();
                 break;
         }
@@ -92,7 +93,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void FixedUpdate() {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        MovePlayer(moveDirection);
+        MovePlayer(moveDirection, moveSpeed);
     }
 
     private void MyInput() {
@@ -109,7 +110,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    private void MovePlayer(Vector3 moveDirection){
+    private void MovePlayer(Vector3 moveDirection, float moveSpeed){
         
 
         if (grounded){
@@ -145,6 +146,7 @@ public class NewPlayerMovement : MonoBehaviour
     private void HandleHookshotStart() {
 
         if (Input.GetKey(KeyCode.E) && grounded && readyToHook) {
+            posss = playerCamera.transform.rotation;
             
 
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit raycastHit)) {
@@ -161,15 +163,15 @@ public class NewPlayerMovement : MonoBehaviour
     private void HandleHookshotMovement() {
         Vector3 hookShotDir = (hookShotPos - transform.position).normalized;
 
-        float min = 0.63f;
-        float max = 0.66f;
+        float min = 6f;
+        float max = 10f;
 
         float hookShotSpeed = Mathf.Clamp(Vector3.Distance(transform.position, hookShotPos), min, max);
-        float speedMultiplayer = 0.0075f;
+        float speedMultiplayer = 200f;
 
         Debug.Log(hookShotSpeed);
 
-        MovePlayer(hookShotDir * hookShotSpeed * speedMultiplayer * Time.deltaTime);
+        MovePlayer(hookShotDir, speedMultiplayer * hookShotSpeed  * Time.deltaTime);
 
         float reachedPos = 1.5f;
 
