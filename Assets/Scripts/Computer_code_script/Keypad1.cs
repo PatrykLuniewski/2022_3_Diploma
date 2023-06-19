@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class Keypad1 : MonoBehaviour
 {
-    [SerializeField] private TMP_Text Ans;
-    [SerializeField] private Animator Door;
+    [SerializeField]  TMP_Text Ans;
+    [SerializeField]  Animator Door;
 
     private string Answer = "5829";
 
     public void Number(int number)
     {
+        if(Ans.text=="B³¹d")
+        {
+            Ans.text = "";
+        }
         Ans.text += number.ToString();
     }
 
