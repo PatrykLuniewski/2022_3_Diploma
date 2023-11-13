@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ElectricBoxOn : MonoBehaviour
@@ -11,11 +12,30 @@ public class ElectricBoxOn : MonoBehaviour
     private Renderer renderer = null;
     public GameObject computer_activation;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+            if (playerMovement == null)
+            {
+                playerMovement.showPressToInteract();
 
+            }
+
+        }    
+
+
+    }
     public void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+            if(playerMovement != null)
+            {
+                playerMovement.showPressToInteract();
+            }
 
             if (Input.GetKey(KeyCode.E))
             {

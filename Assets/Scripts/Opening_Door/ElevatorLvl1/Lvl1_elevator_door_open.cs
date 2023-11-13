@@ -12,14 +12,11 @@ public class Lvl1_elevator_door_open : MonoBehaviour
 
     public void Start()
     {
-        StartCoroutine(Delay(5f));
+        StartCoroutine(Delay(3f));
         Debug.Log("assdasdasda");
 
     }
-    public void OnTriggerEnter(Collider other)
-    {
 
-    }
     IEnumerator Delay(float time)
     {
         Debug.Log("Zaczynamy delay");

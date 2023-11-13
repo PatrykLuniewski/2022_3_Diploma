@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        
+
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
 
         // handle drag
-        
+
         if (grounded && !activeGrapple)
         {
             rb.drag = groundDrag;
@@ -109,8 +109,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Debug.Log(grounded);
-
-        
 
 
 
@@ -304,4 +302,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocityXZ = displacementXZ /(Mathf.Sqrt(-2*trajectoryHeight/gravity) + Mathf.Sqrt(2*(displacementyY-trajectoryHeight) / gravity));
         return velocityXZ + velocityY;
     }
+
+    public GameObject PressToInteractUI;
+    public void showPressToInteract()
+    {
+        PressToInteractUI.SetActive(true);
+    }
+    public float rayLength = 5f; // Długość promienia raycast
+
 }

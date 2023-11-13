@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Door_to_lvl2_trigger : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Start is called before the first frame updates
     public Animator door_to_lvl2 = null;
 
     public void OnTriggerEnter(Collider other)
