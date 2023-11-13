@@ -19,6 +19,7 @@ public class Canvas_activate : MonoBehaviour
     public GameObject pilar2;
     public GameObject pilar3;
     public GameObject pilar4;
+    public GameObject PressTointeract;
     void Start()
     {
 
@@ -54,6 +55,7 @@ public class Canvas_activate : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             is_in_trigger = true;
+            PressTointeract.SetActive(true);
             
         }
     }
@@ -63,7 +65,7 @@ public class Canvas_activate : MonoBehaviour
         {
             is_in_trigger = false;
             panel.SetActive(false);
-            
+            PressTointeract.SetActive(false);
         }
     }
     public void AddDigit(String digit)
