@@ -13,7 +13,7 @@ public class PlayerCamera : MonoBehaviour
     float yRotation;
 
     public float rayLength = 1000f; // D³ugoœæ promienia raycast
-
+    private bool isCameraActive = true;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -23,6 +23,8 @@ public class PlayerCamera : MonoBehaviour
     public GameObject showPressToInteractUI;
     void Update()
     {
+        if (!isCameraActive)
+            return;
         // Obrót kamery
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
@@ -63,5 +65,9 @@ public class PlayerCamera : MonoBehaviour
                 showPressToInteractUI.SetActive(false);
             }
         }
+    }
+    public void SetCameraActive(bool isActive)
+    {
+        isCameraActive = isActive;
     }
 }

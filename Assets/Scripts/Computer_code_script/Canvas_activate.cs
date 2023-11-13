@@ -20,6 +20,7 @@ public class Canvas_activate : MonoBehaviour
     public GameObject pilar3;
     public GameObject pilar4;
     public GameObject PressTointeract;
+    public PlayerCamera playerCamera;
     void Start()
     {
 
