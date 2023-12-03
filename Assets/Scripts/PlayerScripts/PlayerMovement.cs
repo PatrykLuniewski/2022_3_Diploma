@@ -308,18 +308,6 @@ public class PlayerMovement : MonoBehaviour
     {
         PressToInteractUI.SetActive(true);
     }
-    public TextMeshPro objectiveTextUI;
-    public GameObject objectiveUI;
-    public void showObjective(string textToSet)
-    {
-        objectiveUI.SetActive(true);
-        objectiveTextUI.SetText(textToSet);
-    }
-    public void hideObjective(string textToSet)
-    {
-        objectiveUI.SetActive(true);
-        objectiveTextUI.SetText(textToSet);
-    }
     public float rayLength = 5f; // Długość promienia raycast
 
 }

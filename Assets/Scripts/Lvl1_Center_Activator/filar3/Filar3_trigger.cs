@@ -23,7 +23,7 @@ public class Filar3_trigger : MonoBehaviour
                 renderer = gameObject.GetComponent<Renderer>();
                 renderer.material = material;
                 filar3.Play("Filar3_animation_activate", 0, 0.0f);
-                //Destroy(this.gameObject);
+                Destroy(this.gameObject);
             }
 
         }
