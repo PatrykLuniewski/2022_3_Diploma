@@ -12,7 +12,7 @@ public class PlayerCamera : MonoBehaviour
     float xRotation;
     float yRotation;
 
-    public float rayLength = 1000f; // D³ugoœæ promienia raycast
+    public float rayLength = 100f; // D³ugoœæ promienia raycast
     private bool isCameraActive = true;
     void Start()
     {
@@ -37,6 +37,14 @@ public class PlayerCamera : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
+        //RAYCASTING
+        raycastInteraction();
+
+
+    }
+
+    public void raycastInteraction()
+    {
         // Raycast
         RaycastHit hit;
         Vector3 rayDirection = transform.forward; // Kierunek raycasta z kamery
@@ -53,6 +61,9 @@ public class PlayerCamera : MonoBehaviour
             } 
         }
     }
+
+
+
     public void SetCameraActive(bool isActive)
     {
         isCameraActive = isActive;
