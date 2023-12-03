@@ -24,7 +24,7 @@ public class Filar1_trigger : MonoBehaviour
                 renderer.material = material;
                 filar1.Play("Filar1_animation_activate", 0, 0.0f);
                
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
             }
 
         }

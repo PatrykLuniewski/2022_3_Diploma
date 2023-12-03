@@ -30,7 +30,7 @@ public class Filar4_trigger : MonoBehaviour
                 filar4.Play("Filar4_animation_activate", 0, 0.0f);
                 door_trigger.SetActive(true);
                 door_trigger2.SetActive(true);
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
             }
 
 
