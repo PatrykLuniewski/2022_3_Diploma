@@ -50,20 +50,7 @@ public class PlayerCamera : MonoBehaviour
             // Sprawdzanie, czy trafiony obiekt ma tag "interactable"
             if (Physics.Raycast(transform.position, rayDirection, out hit, rayLength))
             {
-                if (hit.collider.CompareTag("interactable"))
-                {
-                    Debug.Log("Trafiono w obiekt 'interactable': " + hit.collider.gameObject.name);
-                    showPressToInteractUI.SetActive(true);
-                }
-                else
-                {
-                    showPressToInteractUI.SetActive(false);
-                }
-            }
-            else
-            {
-                showPressToInteractUI.SetActive(false);
-            }
+            } 
         }
     }
     public void SetCameraActive(bool isActive)
