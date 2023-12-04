@@ -12,6 +12,7 @@ public class PlayerCamera : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    GameObject pressEtoInteractHint;
     public float rayLength = 100f; // D³ugoœæ promienia raycast
     private bool isCameraActive = true;
     void Start()
@@ -58,7 +59,22 @@ public class PlayerCamera : MonoBehaviour
             // Sprawdzanie, czy trafiony obiekt ma tag "interactable"
             if (Physics.Raycast(transform.position, rayDirection, out hit, rayLength))
             {
-            } 
+                if (hit.collider.CompareTag("interactable"))
+                {
+                    Debug.Log("Trafiono w obiekt 'interactable': " + hit.collider.gameObject.name);
+                    showPressToInteractUI.SetActive(true);
+                }
+                else
+                {
+                    showPressToInteractUI.SetActive(false);
+                }
+            }
+            else
+            {
+                showPressToInteractUI.SetActive(false);
+            }
+        
+
         }
     }
 

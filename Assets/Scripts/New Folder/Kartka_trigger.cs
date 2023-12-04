@@ -6,18 +6,24 @@ public class Kartka_trigger : MonoBehaviour
 {
     bool isInTrigger=false;
     public GameObject kartka;
+    public GameObject dialogueLine;
+    DialogueLineScript dialogueLineScript;
 
     void Update()
     {
+        
         if(isInTrigger==true&&Input.GetKeyDown(KeyCode.E))
         {
-            if(kartka.active==false)
+            dialogueLineScript = GetComponent<DialogueLineScript>();
+
+            if (kartka.active==false)
             {
                 kartka.SetActive(true);
             }
             else if (kartka.active == true)
             {
                 kartka.SetActive(false);
+                dialogueLineScript.AddNewDialogue(dialogueLine);
             }
         }
     }

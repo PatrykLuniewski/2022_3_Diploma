@@ -13,6 +13,11 @@ public class ElectricBoxOn : MonoBehaviour
     public GameObject computer_activation;
     public GameObject objectiveToRemove;
     public GameObject objectiveToAdd;
+    public GameObject lights;
+
+    DialogueLib dialogueLib;
+    public GameObject startDialogueLine;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,8 +46,10 @@ public class ElectricBoxOn : MonoBehaviour
                 electricBoxButton.Play("electric_button_activate", 0, 0.0f);
                 objectiveToRemove.SetActive(false);
                 objectiveToAdd.SetActive(true);
-
+                lights.SetActive(true);
                 computer_activation.SetActive(true);
+                dialogueLib = GetComponent<DialogueLib>();
+                dialogueLib.StartNewDialoguesLines(startDialogueLine);
                 //Destroy(this.gameObject);
             }
 

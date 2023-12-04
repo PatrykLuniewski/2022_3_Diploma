@@ -21,6 +21,18 @@ public class Canvas_activate : MonoBehaviour
     public GameObject pilar4;
     public GameObject PressTointeract;
     public PlayerCamera playerCamera;
+
+  
+    public GameObject addHint;
+
+    public GameObject addHint2;
+    ChangeObjectiveLib changeObjectiveLib = new ChangeObjectiveLib();
+    ChangeObjectiveLib2 changeObjectiveLib2;
+
+    public GameObject dialogueLine;
+    public GameObject dialogueLine2;
+    DialogueLineScript dialogueLineScript;
+    private bool firstDialogue=true;
     void Start()
     {
 
@@ -32,12 +44,17 @@ public class Canvas_activate : MonoBehaviour
         if (is_in_trigger==true&&Input.GetKeyDown(KeyCode.E))
         {
 
+
+            
+
             if (is_active==false) 
             {
                 is_active=true;
                 panel.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+                playerCamera.SetCameraActive(false);
+
 
             }
             else 
@@ -45,7 +62,20 @@ public class Canvas_activate : MonoBehaviour
                 is_active=false;
                 panel.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
+                playerCamera.SetCameraActive(true);
             }
+            if (firstDialogue == true)
+            {
+                changeObjectiveLib2 = GetComponent<ChangeObjectiveLib2>();
+                changeObjectiveLib2.changeObjective(addHint);
+                dialogueLineScript = GetComponent<DialogueLineScript>();
+                dialogueLineScript.AddNewDialogue(dialogueLine);
+                firstDialogue= false;
+            }
+
+
+
+
 
         }
         
@@ -57,7 +87,7 @@ public class Canvas_activate : MonoBehaviour
         {
             is_in_trigger = true;
             PressTointeract.SetActive(true);
-            
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -97,6 +127,11 @@ public class Canvas_activate : MonoBehaviour
             pilar2.SetActive(true);
             pilar3.SetActive(true);
             pilar4.SetActive(true);
+            changeObjectiveLib2 = GetComponent<ChangeObjectiveLib2>();
+            changeObjectiveLib2.changeObjective(addHint2);
+            dialogueLineScript = GetComponent<DialogueLineScript>();
+            dialogueLineScript.AddNewDialogue(dialogueLine2);
+     
         }
         else 
         {

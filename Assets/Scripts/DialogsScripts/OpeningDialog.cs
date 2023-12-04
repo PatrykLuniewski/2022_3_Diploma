@@ -8,6 +8,10 @@ public class OpeningDialog : MonoBehaviour
     public GameObject dialog1 = null;
     public GameObject dialog2 = null;
     public GameObject dialog3 = null;
+    public GameObject dialog4 = null;
+
+    ChangeObjectiveLib changeObjectiveLib;
+    public GameObject objectiveToAdd;
 
     void Start()
     {
@@ -28,6 +32,12 @@ public class OpeningDialog : MonoBehaviour
         dialog3.SetActive(true);
         yield return new WaitForSeconds(3f);
         dialog3.SetActive(false);
+        dialog4.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        dialog4.SetActive(false);
+        changeObjectiveLib = GetComponent<ChangeObjectiveLib>();
+        changeObjectiveLib.addObjective(objectiveToAdd);
+
     }
 
 

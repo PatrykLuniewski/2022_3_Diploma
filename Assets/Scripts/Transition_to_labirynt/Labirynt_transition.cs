@@ -10,7 +10,7 @@ public class Labirynt_transition : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("DeathLabirynt");
+            SceneManager.LoadScene("DarkRoom");
 
         }
     }
