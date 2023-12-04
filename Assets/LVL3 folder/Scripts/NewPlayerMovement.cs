@@ -190,7 +190,7 @@ public class NewPlayerMovement : MonoBehaviour
         float hookShotSpeed = Mathf.Clamp(Vector3.Distance(transform.position, hookShotPos), min, max);
 
         
-        rb.AddForce(hookShotDir.normalized * hookShotSpeed, ForceMode.Force);
+        rb.AddForce(hookShotDir.normalized * 60f, ForceMode.Force);
 
         float reachedPos = 1.5f;
 
