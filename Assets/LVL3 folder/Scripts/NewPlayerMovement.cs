@@ -12,6 +12,9 @@ public class NewPlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
 
+    public float sprint;
+
+
     public float groundDrag;
 
     public float jumpForce;
@@ -44,7 +47,7 @@ public class NewPlayerMovement : MonoBehaviour
     private Camera playerCamera;
     private State state;
     private Vector3 hookShotPos;
-    private bool readyToHook = true;
+    public bool readyToHook = true;
 
     private enum State {
         Normal,
@@ -62,6 +65,9 @@ public class NewPlayerMovement : MonoBehaviour
     }
 
     private void Update() {
+
+
+        Debug.Log(readyToHook);
         
         
 
@@ -75,14 +81,14 @@ public class NewPlayerMovement : MonoBehaviour
                 SpeedControl();
                 HandleHookshotStart();
 
-                if(grounded) {
-                    rb.drag = groundDrag;
-                } else {
-                    rb.drag = 0;
-                }
+                 if(grounded) {
+                     rb.drag = groundDrag;
+                 } else {
+                     rb.drag = 0;
+                 }
                 break;
             case State.HookshotFlyingPlayer:
-                playerCamera.transform.rotation = posss;
+                //playerCamera.transform.rotation = posss;
                 HandleHookshotMovement();
                 break;
         }
@@ -92,7 +98,16 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void FixedUpdate() {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        MovePlayer(moveDirection, moveSpeed);
+
+        if(Input.GetKey(KeyCode.LeftShift)) {
+            MovePlayer(moveDirection, sprint);
+        } else {
+            MovePlayer(moveDirection, moveSpeed);
+        }
+
+        
+
+        
     }
 
     private void MyInput() {
@@ -107,17 +122,19 @@ public class NewPlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+       
+        
     }
 
     private void MovePlayer(Vector3 moveDirection, float moveSpeed){
-        
-
-        if (grounded){
-            rb.AddForce(moveDirection.normalized * moveSpeed * 8f, ForceMode.Force);
-        } else {
-            rb.AddForce(1, -20, 1);
+        if (grounded) {
+            rb.AddForce(moveDirection.normalized * moveSpeed *8f, ForceMode.Force);
         }
+            
     }
+
+   
 
     private void SpeedControl() {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -144,8 +161,9 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void HandleHookshotStart() {
 
-        if (Input.GetKey(KeyCode.E) && grounded && readyToHook) {
-            posss = playerCamera.transform.rotation;
+        if (Input.GetKey(KeyCode.Mouse1)  && readyToHook) {
+            // posss = playerCamera.transform.rotation;
+
             
 
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit raycastHit)) {
@@ -155,22 +173,24 @@ public class NewPlayerMovement : MonoBehaviour
             }
             readyToHook = false;
 
-            Invoke(nameof(ResetHook), hookCooldown);
+            Invoke(nameof(ResetHook), hookCooldown * Time.deltaTime);
         } 
     }
 
     private void HandleHookshotMovement() {
         Vector3 hookShotDir = (hookShotPos - transform.position).normalized;
 
-        float min = 6f;
-        float max = 10f;
+        
+        
+
+
+        float min = 15f;
+        float max = 20f;
 
         float hookShotSpeed = Mathf.Clamp(Vector3.Distance(transform.position, hookShotPos), min, max);
-        float speedMultiplayer = 200f;
 
-        Debug.Log(hookShotSpeed);
-
-        MovePlayer(hookShotDir, speedMultiplayer * hookShotSpeed  * Time.deltaTime);
+        
+        rb.AddForce(hookShotDir.normalized * hookShotSpeed, ForceMode.Force);
 
         float reachedPos = 1.5f;
 
