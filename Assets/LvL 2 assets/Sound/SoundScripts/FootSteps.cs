@@ -6,6 +6,7 @@ public class FootSteps : MonoBehaviour
 {
 
     public AudioSource footSteps;
+    public AudioSource sprint;
     public NewPlayerMovement player;
     void Start()
     {
@@ -17,11 +18,24 @@ public class FootSteps : MonoBehaviour
         
         if (MyInput(KeyCode.W) || MyInput(KeyCode.S) || MyInput(KeyCode.A) || MyInput(KeyCode.D)) {
             if (player.grounded) {
-                footSteps.enabled = true;
-            }
+                if (MyInput(KeyCode.LeftShift)) {
+                    sprint.enabled = true;
+                } else {
+                    footSteps.enabled = true;
+                    sprint.enabled = false;
+                }
+                    
+            } 
             
         } else {
             footSteps.enabled = false;
+            sprint.enabled = false;
+        }
+
+        if (MyInput(KeyCode.LeftShift) && player.grounded) {
+            sprint.enabled = true;
+        } else {
+            sprint.enabled = false;
         }
     }
 
