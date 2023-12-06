@@ -19,9 +19,9 @@ public class NewPlayerMovement : MonoBehaviour
 
     public float jumpForce;
     public float jumpCooldown;
-    public float airMultiplier;
     public float hookCooldown;
     bool readyToJump = true;
+
 
     private Quaternion posss;
 
@@ -33,7 +33,7 @@ public class NewPlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
     public Transform orientation;
 
@@ -48,6 +48,7 @@ public class NewPlayerMovement : MonoBehaviour
     private State state;
     private Vector3 hookShotPos;
     public bool readyToHook = true;
+
 
     private enum State {
         Normal,
@@ -67,7 +68,6 @@ public class NewPlayerMovement : MonoBehaviour
     private void Update() {
 
 
-        Debug.Log(readyToHook);
         
         
 
@@ -161,7 +161,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void HandleHookshotStart() {
 
-        if (Input.GetKey(KeyCode.Mouse1)  && readyToHook) {
+        if (Input.GetKey(KeyCode.Mouse1)  && readyToHook && !grounded) {
             // posss = playerCamera.transform.rotation;
 
             
@@ -184,13 +184,13 @@ public class NewPlayerMovement : MonoBehaviour
         
 
 
-        float min = 15f;
-        float max = 20f;
+        float min = 55f;
+        float max = 65f;
 
         float hookShotSpeed = Mathf.Clamp(Vector3.Distance(transform.position, hookShotPos), min, max);
 
         
-        rb.AddForce(hookShotDir.normalized * 60f, ForceMode.Force);
+        rb.AddForce(hookShotDir.normalized * hookShotSpeed, ForceMode.Force);
 
         float reachedPos = 1.5f;
 
