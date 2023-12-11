@@ -7,8 +7,6 @@ using UnityEngine.Rendering;
 public class OpenDoor : MonoBehaviour
 { 
 
-
-
     private Animator anim;
     private bool IsAtDoor = false;
 
@@ -46,27 +44,21 @@ public class OpenDoor : MonoBehaviour
         }
         
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag =="Player")
         {
             IsAtDoor = true;
-
-           
-
         }
 
     }
-
     private void OnTriggerExit(Collider other)
     {
-            IsAtDoor = false;
-            CodePanel.SetActive(false);
+        IsAtDoor = false;
+        CodePanel.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
   public void AddDigit(string dignit)
     {
         codeTextValue += dignit;
