@@ -28,20 +28,24 @@ public class DialogueLib : MonoBehaviour
     }
     public IEnumerator multiplyDialoguesLines(GameObject dialogueLine)
     {
-        dialogueLine.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        dialogueLine.SetActive(false);
-
-        if (dialogueLine.transform.childCount > 0)
+        for(int i=0;i<dialogueLine.transform.childCount;i++)
         {
-            GameObject nextDialogueLine = dialogueLine.transform.GetChild(0).gameObject;
-            yield return StartCoroutine(multiplyDialoguesLines(nextDialogueLine));
+            dialogueLine.transform.GetChild(i).gameObject.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            dialogueLine.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
     public IEnumerator singleDialogueLine(GameObject dialogueLine)
     {
         dialogueLine.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
+        dialogueLine.SetActive(false);
+    }
+
+    public IEnumerator singleDialogueLineWithTime(GameObject dialogueLine, float time)
+    {
+        dialogueLine.SetActive(true);
+        yield return new WaitForSeconds(time);
         dialogueLine.SetActive(false);
     }
 }

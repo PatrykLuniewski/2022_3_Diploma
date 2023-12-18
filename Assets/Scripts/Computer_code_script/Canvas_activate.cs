@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.Tracing;
 using TMPro;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class Canvas_activate : MonoBehaviour
     public GameObject player;
     public TextMeshProUGUI codeText;
     private String codeTextValue;
-    public String safeCode = "1234";
+    public String safeCode = "6969";
     public GameObject pilar1;
     public GameObject pilar2;
     public GameObject pilar3;
@@ -29,9 +30,12 @@ public class Canvas_activate : MonoBehaviour
     ChangeObjectiveLib changeObjectiveLib = new ChangeObjectiveLib();
     ChangeObjectiveLib2 changeObjectiveLib2;
 
+
     public GameObject dialogueLine;
     public GameObject dialogueLine2;
     DialogueLineScript dialogueLineScript;
+    DialogueLib dialogueLib;
+    public GameObject startDialogueLine;
     private bool firstDialogue=true;
     void Start()
     {
@@ -129,9 +133,10 @@ public class Canvas_activate : MonoBehaviour
             pilar4.SetActive(true);
             changeObjectiveLib2 = GetComponent<ChangeObjectiveLib2>();
             changeObjectiveLib2.changeObjective(addHint2);
-            dialogueLineScript = GetComponent<DialogueLineScript>();
-            dialogueLineScript.AddNewDialogue(dialogueLine2);
-     
+            dialogueLib = GetComponent<DialogueLib>();
+            dialogueLib.SingleDialogueLine(dialogueLine2);
+            Debug.LogError("dialogueLine jest null");
+
         }
         else 
         {
