@@ -26,7 +26,6 @@ public class ElectricBoxOn : MonoBehaviour
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
             if (playerMovement == null)
             {
-                playerMovement.showPressToInteract();
 
             }
 
