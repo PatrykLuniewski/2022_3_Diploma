@@ -8,6 +8,9 @@ public class KartkaTr : MonoBehaviour
 {
     [SerializeField] private Image _Kartka1;
     [SerializeField] private TMP_Text _text;
+    public GameObject objectiveToRemove;
+    public GameObject objectiveToAdd;
+    
 
     void OnTriggerEnter(Collider other)
     {
@@ -24,6 +27,10 @@ public class KartkaTr : MonoBehaviour
         {
             _Kartka1.enabled = false;
             _text.enabled = false;
+            objectiveToRemove.SetActive(false);
+            objectiveToAdd.SetActive(true);
+           
+            //Destroy(this.gameObject);
         }
     }
 }

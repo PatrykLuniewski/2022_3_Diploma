@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public class OpenDoor : MonoBehaviour
-{ 
+{
 
     private Animator anim;
     private bool IsAtDoor = false;
+    public GameObject objectiveToRemove;
+    public GameObject objectiveToAdd;
 
     [SerializeField] private TextMeshProUGUI CodeText;
     string codeTextValue = "";
@@ -33,20 +35,20 @@ public class OpenDoor : MonoBehaviour
 
         }
         if (codeTextValue.Length >= 4)
-        { 
+        {
             codeTextValue = "";
-    }
+        }
         if (Input.GetKey(KeyCode.E) && IsAtDoor == true)
         {
             CodePanel.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag =="Player")
+        if (other.tag == "Player")
         {
             IsAtDoor = true;
         }
@@ -58,10 +60,13 @@ public class OpenDoor : MonoBehaviour
         CodePanel.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        objectiveToRemove.SetActive(false);
+        objectiveToAdd.SetActive(true);
     }
-  public void AddDigit(string dignit)
+    public void AddDigit(string dignit)
     {
         codeTextValue += dignit;
     }
-        
+
+
 }

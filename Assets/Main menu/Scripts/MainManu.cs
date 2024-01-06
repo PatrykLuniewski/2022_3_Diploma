@@ -7,7 +7,7 @@ public class MainManu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Lvl0");
+        SceneManager.LoadScene("LVL2");
     }
     public void QuitGame()
     {
