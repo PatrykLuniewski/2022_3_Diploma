@@ -80,6 +80,7 @@ public class NewPlayerMovement : MonoBehaviour
                 MyInput();
                 SpeedControl();
                 HandleHookshotStart();
+                rb.useGravity = true;
 
                  if(grounded) {
                      rb.drag = groundDrag;
@@ -90,6 +91,7 @@ public class NewPlayerMovement : MonoBehaviour
             case State.HookshotFlyingPlayer:
                 //playerCamera.transform.rotation = posss;
                 HandleHookshotMovement();
+                rb.useGravity = false;
                 break;
         }
 
@@ -178,26 +180,30 @@ public class NewPlayerMovement : MonoBehaviour
     }
 
     private void HandleHookshotMovement() {
-        Vector3 hookShotDir = (hookShotPos - transform.position).normalized;
+        Vector3 hookShotDir = (hookShotPos - playerCamera.transform.position).normalized;
 
         
         
 
 
-        float min = 55f;
-        float max = 65f;
+        float min = 1f;
+        float max = 25f;
 
-        float hookShotSpeed = Mathf.Clamp(Vector3.Distance(transform.position, hookShotPos), min, max);
+        float hookShotSpeed = Mathf.Clamp(Vector3.Distance(playerCamera.transform.position, hookShotPos), min, max);
 
         
         rb.AddForce(hookShotDir.normalized * hookShotSpeed, ForceMode.Force);
 
-        float reachedPos = 1.5f;
+        float reachedPos = 2f;
+
+        Debug.Log(Vector3.Distance(playerCamera.transform.position, hookShotPos));
 
 
-
-        if ( Vector3.Distance(transform.position, hookShotPos) < reachedPos || !(Input.GetKey(KeyCode.E))) {
+        if (!Input.GetKey(KeyCode.Mouse1)) {
             state = State.Normal;
         }
+        // if ( Vector3.Distance(playerCamera.transform.position, hookShotPos) < reachedPos || !(Input.GetKey(KeyCode.E))) {
+        //     state = State.Normal;
+        // }
     }
 }
