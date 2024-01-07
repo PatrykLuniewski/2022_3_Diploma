@@ -11,6 +11,7 @@ public class OpenDoor : MonoBehaviour
     private bool IsAtDoor = false;
     public GameObject objectiveToRemove;
     public GameObject objectiveToAdd;
+    public PlayerCamera playerCamera;
 
     [SerializeField] private TextMeshProUGUI CodeText;
     string codeTextValue = "";
@@ -43,6 +44,7 @@ public class OpenDoor : MonoBehaviour
             CodePanel.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            playerCamera.SetCameraActive(false);
         }
 
     }
@@ -62,6 +64,7 @@ public class OpenDoor : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         objectiveToRemove.SetActive(false);
         objectiveToAdd.SetActive(true);
+        playerCamera.SetCameraActive(true);
     }
     public void AddDigit(string dignit)
     {
