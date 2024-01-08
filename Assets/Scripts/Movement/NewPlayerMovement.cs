@@ -192,11 +192,11 @@ public class NewPlayerMovement : MonoBehaviour
         float hookShotSpeed = Mathf.Clamp(Vector3.Distance(playerCamera.transform.position, hookShotPos), min, max);
 
         
-        rb.AddForce(hookShotDir.normalized * hookShotSpeed, ForceMode.Force);
+        rb.AddForce(hookShotDir.normalized * hookShotSpeed * 1.1f, ForceMode.Force);
 
         float reachedPos = 2f;
 
-        Debug.Log(Vector3.Distance(playerCamera.transform.position, hookShotPos));
+        Debug.Log(Vector3.Distance(playerCamera.transform.position , hookShotPos));
 
 
         if (!Input.GetKey(KeyCode.Mouse1)) {
