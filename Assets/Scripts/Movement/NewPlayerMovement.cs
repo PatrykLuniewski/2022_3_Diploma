@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class NewPlayerMovement : MonoBehaviour
@@ -89,13 +90,10 @@ public class NewPlayerMovement : MonoBehaviour
                  }
                 break;
             case State.HookshotFlyingPlayer:
-                //playerCamera.transform.rotation = posss;
                 HandleHookshotMovement();
                 rb.useGravity = false;
                 break;
         }
-
-        
     }
 
     private void FixedUpdate() {
@@ -106,10 +104,6 @@ public class NewPlayerMovement : MonoBehaviour
         } else {
             MovePlayer(moveDirection, moveSpeed);
         }
-
-        
-
-        
     }
 
     private void MyInput() {
@@ -164,7 +158,6 @@ public class NewPlayerMovement : MonoBehaviour
     private void HandleHookshotStart() {
 
         if (Input.GetKey(KeyCode.Mouse1)  && readyToHook && !grounded) {
-            // posss = playerCamera.transform.rotation;
 
             
 
@@ -173,9 +166,9 @@ public class NewPlayerMovement : MonoBehaviour
                 hookShotPos = raycastHit.point;
                 state = State.HookshotFlyingPlayer;
             }
-            readyToHook = false;
+            // readyToHook = false;
 
-            Invoke(nameof(ResetHook), hookCooldown * Time.deltaTime);
+            // Invoke(nameof(ResetHook), hookCooldown * Time.deltaTime);
         } 
     }
 
@@ -201,9 +194,20 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (!Input.GetKey(KeyCode.Mouse1)) {
             state = State.Normal;
+            readyToHook = false;
+            Invoke(nameof(ResetHook), hookCooldown * Time.deltaTime);
         }
         // if ( Vector3.Distance(playerCamera.transform.position, hookShotPos) < reachedPos || !(Input.GetKey(KeyCode.E))) {
         //     state = State.Normal;
         // }
     }
+
+     void OnCollisionEnter(Collision other)
+     {
+        if (other.gameObject.CompareTag("Laser")) {
+            Debug.Log("asdasd");
+        }
+        
+     }
+
 }
