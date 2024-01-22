@@ -1,3 +1,4 @@
+using System.Security.Principal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using TMPro;
+using UnityEngine.UI;
 
 public class NewPlayerMovement : MonoBehaviour
 {
@@ -22,6 +25,8 @@ public class NewPlayerMovement : MonoBehaviour
     public float jumpCooldown;
     public float hookCooldown;
     bool readyToJump = true;
+
+    public GameObject newSpawn;
 
 
     private Quaternion posss;
@@ -49,6 +54,8 @@ public class NewPlayerMovement : MonoBehaviour
     private State state;
     private Vector3 hookShotPos;
     public bool readyToHook = true;
+
+    
 
 
     private enum State {
@@ -93,6 +100,10 @@ public class NewPlayerMovement : MonoBehaviour
                 HandleHookshotMovement();
                 rb.useGravity = false;
                 break;
+        }
+
+        if (Time.timeScale == 0 && Input.GetKeyDown(KeyCode.Mouse0)) {
+            Time.timeScale = 1;
         }
     }
 
@@ -189,7 +200,6 @@ public class NewPlayerMovement : MonoBehaviour
 
         float reachedPos = 2f;
 
-        Debug.Log(Vector3.Distance(playerCamera.transform.position , hookShotPos));
 
 
         if (!Input.GetKey(KeyCode.Mouse1)) {
@@ -205,8 +215,11 @@ public class NewPlayerMovement : MonoBehaviour
      void OnCollisionEnter(Collision other)
      {
         if (other.gameObject.CompareTag("Laser")) {
-            Debug.Log("asdasd");
+            rb.transform.position = newSpawn.transform.position;
+            Time.timeScale = 0;
         }
+
+        
         
      }
 
